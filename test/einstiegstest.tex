@@ -5,39 +5,7 @@
 \usepackage{environ}
 \usepackage{ifthen}
 
-\NewEnviron{ignorable}[1][]{%
-  \ifthenelse{\isundefined{\showallignorables}}
-    {\ifthenelse{\isundefined{\hideallignorables} \AND \NOT\equal{#1}{h}}
-        {\BODY}
-        {}%
-    }
-    {\BODY}%
-}
 
-\ifdefined\FU
-  \newcommand{\hideallignorables}{Hides all ignorables; It has priority over classes}  
-  \newcommand{\praesenzaufgabe}{}
-  \newcommand{\FUBreak}{\clearpage}
-  \newcommand{\FSUBreak}{}
-  \newcommand{\FUZeile}{\hspace{\baselineskip}}
-  \newcommand{\FSUZeile}{}
-  \newcommand{\FUHalbzeile}{\hspace{0.5\baselineskip}}
-  \newcommand{\FSUHalbzeile}{}
-  \newcommand{\FUDoppelzeile}{\hspace{2\baselineskip}}
-  \newcommand{\FSUDoppelzeile}{}
-\else
-  \newcommand{\showallignorables}{Shows all ignorables; It has priority over classes and hideallignorables}
-  \newcommand{\praesenzaufgabe}{\textbf{Präsenzaufgabe!}\ |\ }
-  %\newcommand{\praesenzaufgabe}{\fbox{\textbf{Präsenzaufgabe!}}}
-  \newcommand{\FUBreak}{}
-  \newcommand{\FSUBreak}{\clearpage}
-  \newcommand{\FUZeile}{}
-  \newcommand{\FSUZeile}{\hspace{\baselineskip}}
-  \newcommand{\FUHalbzeile}{}
-  \newcommand{\FSUHalbzeile}{\hspace{0.5\baselineskip}}
-  \newcommand{\FUDoppelzeile}{}
-  \newcommand{\FSUDoppelzeile}{\hspace{2\baselineskip}}
-\fi
 
 \usepackage[margin=2cm]{geometry}
 
@@ -68,6 +36,16 @@
   isbn=false,
   bibstyle=biblatex-sp-unified,
   citestyle=sp-authoryear-comp]{biblatex}
+
+
+\NewEnviron{ignorable}[1][]{%
+  \ifthenelse{\isundefined{\showallignorables}}
+    {\ifthenelse{\isundefined{\hideallignorables} \AND \NOT\equal{#1}{h}}
+        {\BODY}
+        {}%
+    }
+    {\BODY}%
+}
 
 \definecolor{rot}{rgb}{0.7,0.2,0.0}
 \newcommand{\rot}[1]{\textcolor{rot}{#1}}
@@ -104,6 +82,37 @@
 \newcommand*{\mybox}[1]{\framebox{#1}}
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
+
+
+\ifdefined\FU
+  \newcommand{\hideallignorables}{Hides all ignorables; It has priority over classes}  
+  \newcommand{\praesenzaufgabe}{}
+  \newcommand{\morphologieaufgabe}{}
+  \newcommand{\syntaxaufgabe}{}
+  \newcommand{\graphematikaufgabe}{}
+  \newcommand{\FUBreak}{\clearpage}
+  \newcommand{\FSUBreak}{}
+  \newcommand{\FUZeile}{\hspace{\baselineskip}}
+  \newcommand{\FSUZeile}{}
+  \newcommand{\FUHalbzeile}{\hspace{0.5\baselineskip}}
+  \newcommand{\FSUHalbzeile}{}
+  \newcommand{\FUDoppelzeile}{\hspace{2\baselineskip}}
+  \newcommand{\FSUDoppelzeile}{}
+\else
+  \newcommand{\showallignorables}{Shows all ignorables; It has priority over classes and hideallignorables}
+  \newcommand{\praesenzaufgabe}{\textbf{Präsenzaufgabe!}\ |\ }
+  \newcommand{\morphologieaufgabe}{\textbf{\gruen{Morphologie-Seminar}}\ |\ }
+  \newcommand{\syntaxaufgabe}{\textbf{\rot{Syntax-Vorlesung}}\ |\ }
+  \newcommand{\graphematikaufgabe}{\textbf{\blau{Graphematik-Vorlesung}}\ |\ }
+  \newcommand{\FUBreak}{}
+  \newcommand{\FSUBreak}{\clearpage}
+  \newcommand{\FUZeile}{}
+  \newcommand{\FSUZeile}{\hspace{\baselineskip}}
+  \newcommand{\FUHalbzeile}{}
+  \newcommand{\FSUHalbzeile}{\hspace{0.5\baselineskip}}
+  \newcommand{\FUDoppelzeile}{}
+  \newcommand{\FSUDoppelzeile}{\hspace{2\baselineskip}}
+\fi
 \newcommand{\Lf}{
   \setlength{\itemsep}{1pt}
   \setlength{\parskip}{0pt}
@@ -143,11 +152,11 @@
 \title{Germanistische Sprachwissenschaft\\Einstiegstest Grammatik}
 
 \ifdefined\FU
-\date{Version für FU Berlin, Sommer 2023 (\today)\\[\baselineskip]
+\date{Version für FU Berlin, Winter 2024 (\today)\\[\baselineskip]
   Vollständige Version und weitere Angaben:\\[0.25\baselineskip]
     \url{https://rolandschaefer.net/archives/2504}}
 \else
-\date{Version Sommer 2023 (\today)\\[0.5\baselineskip]
+\date{Version Winter 2024 (\today)\\[0.5\baselineskip]
     \url{https://rolandschaefer.net/archives/2504}}
 \fi
 
@@ -194,12 +203,6 @@
 
 \begin{center}
 
-  \begin{ignorable}
-  \fbox{\Large{Bearbeiten Sie in Präsenz nur: \textbf{1.1}, \textbf{1.8} und \textbf{alle Teilaufgaben von 2}.}}
-
-  \Zeile
-  \end{ignorable}
-
   \Large{Dieser Test dient nur Ihrer eigenen Information.\\
 
     \Zeile
@@ -216,8 +219,10 @@
   
   \Zeile
 
-  Einige Fragen zielen auch bereits darauf ab, Ihnen\\
-  Unzulänglichkeiten des Schulstoffs deutlich zu machen.
+  An der FSU Jena gilt: Zum Anfang des Morphologie-Seminars\\
+  bearbeiten Sie alle Fragen, die mit \textbf{\gruen{Morphologie-Seminar}}\\
+  gekennzeichnet sind, zum Anfang der Syntax-Vorlesung die\\
+  mit \textbf{\rot{Syntax-Vorlesung}} gekennzeichneten.\\
 }
 \end{center}
 
@@ -232,7 +237,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Wortarten im Deutschen}
 
-\subsection{\praesenzaufgabe Klassifikation}
+\subsection{\morphologieaufgabe Klassifikation}
 
 Die wichtigsten Wortarten des Deutschen sind die folgenden.
 In runden Klammern steht jeweils eine übliche Abkürzung, in eckigen Klammern teilweise gebräuchliche \textbf{deutsche Namen der Wortklassen, die wir im Studium allerdings prinzipiell nicht verwenden}.
@@ -297,7 +302,7 @@ Für die ersten beiden Wörter wurde das beispielhaft schon erledigt.
 \FUBreak
 \FSUBreak
 
-\subsection{Substantiv}
+\subsection{\morphologieaufgabe Substantiv}
 
 Kreuzen Sie die korrekten Aussagen an.
 
@@ -315,7 +320,7 @@ Kreuzen Sie die korrekten Aussagen an.
 
 \FUZeile
 
-\subsection{Adjektiv}
+\subsection{\morphologieaufgabe Adjektiv}
 
 Kreuzen Sie die korrekten Aussagen an.
 
@@ -333,7 +338,7 @@ Kreuzen Sie die korrekten Aussagen an.
 
 \FUZeile
 
-\subsection{Artikel}
+\subsection{\morphologieaufgabe Artikel}
 
 Kreuzen Sie die korrekten Aussagen an.
 
@@ -349,7 +354,7 @@ Kreuzen Sie die korrekten Aussagen an.
 \FUBreak
 \FSUBreak
 
-\subsection{Pronomen}
+\subsection{\morphologieaufgabe Pronomen}
 
 Kreuzen Sie die korrekten Aussagen an.
 
@@ -364,7 +369,7 @@ Kreuzen Sie die korrekten Aussagen an.
 
 \FUHalbzeile
 
-\subsection{Verb}
+\subsection{\morphologieaufgabe Verb}
 
 Kreuzen Sie die korrekten Aussagen an.
 
@@ -386,7 +391,7 @@ Kreuzen Sie die korrekten Aussagen an.
 
 \FUHalbzeile
 
-\subsection{Präposition}
+\subsection{\morphologieaufgabe Präposition}
 
 Kreuzen Sie die korrekten Aussagen an.
 
@@ -400,7 +405,7 @@ Kreuzen Sie die korrekten Aussagen an.
 \FUBreak
 \FSUBreak
 
-\subsection{\praesenzaufgabe Unterklassifikation von Verben}
+\subsection{\morphologieaufgabe Unterklassifikation von Verben}
 
 Klassifizieren Sie die unterstrichenen Verben als starke Verben, schwache Verben, Modalverben oder Hilfsverben.
 
@@ -425,7 +430,7 @@ Klassifizieren Sie die unterstrichenen Verben als starke Verben, schwache Verben
 
 \FSUZeile
 
-\subsection{\praesenzaufgabe Flexion (Beugung)}
+\subsection{\morphologieaufgabe Flexion (Beugung)}
 
 Bilden Sie die genannten Formen der unten in ihrer jeweiligen Nennform angegebenen Wörter.
 Hinweis: Mit Präteritum bezeichnet man die einfache Vergangenheitsform.
@@ -452,7 +457,7 @@ Hinweis: Mit Präteritum bezeichnet man die einfache Vergangenheitsform.
 
 \FSUBreak
 
-\subsection{\praesenzaufgabe Kasus (Fall)}
+\subsection{\morphologieaufgabe Kasus (Fall)}
 
 Bestimmen Sie die Kasus -- also Nominativ, Akkusativ, Dativ, Genitiv -- der unterstrichenen Wörter.
 
@@ -472,7 +477,7 @@ Bestimmen Sie die Kasus -- also Nominativ, Akkusativ, Dativ, Genitiv -- der unte
 
 \FSUZeile
 
-\subsection{\praesenzaufgabe Genus (grammatisches Geschlecht)}
+\subsection{\morphologieaufgabe Genus (grammatisches Geschlecht)}
 
 Bestimmen Sie das Genus -- also Maskulinum, Neutrum oder Femininum -- der unterstrichenen Wörter.
 
@@ -494,7 +499,7 @@ Bestimmen Sie das Genus -- also Maskulinum, Neutrum oder Femininum -- der unters
 
 \begin{ignorable}
 
-\subsection{\praesenzaufgabe Person}
+\subsection{\morphologieaufgabe Person}
 
 Bestimmen Sie die Person -- also 1, 2 oder 3 -- der unterstrichenen Wörter (bzw. Wortgruppen im Fall von \textit{Herrn Gödel}).
 
@@ -519,7 +524,7 @@ Bestimmen Sie die Person -- also 1, 2 oder 3 -- der unterstrichenen Wörter (bzw
 \FUZeile
 \FSUBreak
 
-\subsection{\praesenzaufgabe Finitheit}
+\subsection{\morphologieaufgabe Finitheit}
 
 \ul{Unterstreichen} Sie im folgenden Text alle finiten Verbformen und \mybox{rahmen} Sie alle infiniten Verbformen ein.
 Als infinite Verbformen sollen hier auch Partizipien in adjektivischer Funktion usw.\ gelten.
@@ -538,7 +543,7 @@ Sokals Beitrag war in postmodernem Jargon formuliert und gab vor, die Quantengra
 
 \begin{ignorable}
 
-\subsection{\praesenzaufgabe Tempus (Zeitform)}
+\subsection{\morphologieaufgabe Tempus (Zeitform)}
 
 Bestimmen Sie das Tempus der folgenden Sätze.
 Die Tempuskategorien im weiteren Sinn sind im Deutschen: \textbf{Präsens} (Gegenwart), \textbf{Präteritum} (einfache Vergangenheit), \textbf{Perfekt} (vollendete Vergangenheit), \textbf{Plusquamperfekt} (Vorvergangenheit), \textbf{Futur 1} (einfache Zukunft) und \textbf{Futur 2} (Futurum Exactum oder Vergangenheit in der Zukunft).
@@ -566,7 +571,7 @@ Verwenden Sie ggf.\ die Abkürzungen \textbf{Präs}, \textbf{Prät}, \textbf{Per
   \end{tabular}
 \end{center}
 
-\subsection{\praesenzaufgabe Modus (Aussageweise)}
+\subsection{\morphologieaufgabe Modus (Aussageweise)}
 
 Setzen Sie den folgenden kurzen Absatz zunächst in den Konjunktiv 1, dann in den Konjunktiv 2.
 Folgen Sie den Normregeln für die Ersetzung von Formen, die ansonsten nicht eindeutig wären.
@@ -617,7 +622,7 @@ Folgen Sie den Normregeln für die Ersetzung von Formen, die ansonsten nicht ein
   \end{tabular}
 \end{center}
 
-\subsection{\praesenzaufgabe Imperativ (Aufforderungsform)}
+\subsection{\morphologieaufgabe Imperativ (Aufforderungsform)}
 
 Kreuzen Sie die Sätze an, in denen eine echte Imperativform vorkommt.
 
@@ -639,7 +644,7 @@ Kreuzen Sie die Sätze an, in denen eine echte Imperativform vorkommt.
 
 \FUBreak
 
-\subsection{\praesenzaufgabe Genus verbi (Aktiv\slash Passiv)}
+\subsection{\morphologieaufgabe Genus verbi (Aktiv\slash Passiv)}
 
 Setzen Sie die folgenden Sätze ins Aktiv, wenn es Passivsätze sind, und ins Passiv, wenn es Aktivsätze sind.
 
@@ -691,7 +696,7 @@ Setzen Sie die folgenden Sätze ins Aktiv, wenn es Passivsätze sind, und ins Pa
 
 \FUZeile
 
-\subsection{Satzglieder}
+\subsection{\syntaxaufgabe Satzglieder}
 
 Zeichnen Sie einen \mybox{Kasten} um jedes Satzglied in folgenden Sätzen.
 
@@ -712,7 +717,7 @@ Zeichnen Sie einen \mybox{Kasten} um jedes Satzglied in folgenden Sätzen.
 
 \FUZeile
 
-\subsection{Subjekt}
+\subsection{\syntaxaufgabe Subjekt}
 
 Unterstreichen Sie das Subjekt in den folgenden Sätzen.
 
@@ -736,7 +741,7 @@ Unterstreichen Sie das Subjekt in den folgenden Sätzen.
 
 \FUBreak
 
-\subsection{Objekte und adverbiale Bestimmungen}
+\subsection{\syntaxaufgabe Objekte und adverbiale Bestimmungen}
 
 \textbf{\ul{Unterstreichen}} Sie im folgenden Text die direkten Objekte in den folgenden Sätzen und \textbf{\ol{überstreichen}} Sie in denselben Sätzen alle indirekten Objekte. Die Präpositionalobjekte \textbf{\mybox{rahmen}} Sie ein.
 Die adverbialen Bestimmungen \textbf{(klammern)} Sie bitte ein.
@@ -762,7 +767,7 @@ Die adverbialen Bestimmungen \textbf{(klammern)} Sie bitte ein.
 
 \FUBreak
 
-\subsection{Nebensätze}
+\subsection{\syntaxaufgabe Nebensätze}
 
 Bestimmen Sie die Nebensätze in den folgenden Sätzen als Subjektsatz, Objektsatz, Adverbialsatz oder Relativsatz.
 
@@ -784,7 +789,7 @@ Bestimmen Sie die Nebensätze in den folgenden Sätzen als Subjektsatz, Objektsa
 
 \FSUZeile
 
-\subsection{Infinitivgruppen}
+\subsection{\syntaxaufgabe Infinitivgruppen}
 
 Unterstreichen Sie die kompletten Infinitivgruppen (auch: erweiterte Infinitive) in folgenden Sätzen.
 Bestimmen Sie außerdem ihre Funktion im Satz: Subjekt, Objekt oder Adverbial.
@@ -817,7 +822,7 @@ Bestimmen Sie außerdem ihre Funktion im Satz: Subjekt, Objekt oder Adverbial.
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Buchstaben und Laute (Graphematik)}
  
-\subsection{Laute und Buchstaben}
+\subsection{\graphematikaufgabe Laute und Buchstaben}
 
 Welche der unterstrichenen Buchstaben oder Buchstabengruppen in den folgenden Wortpaaren werden in beiden Wörtern gleich ausgesprochen?
 
@@ -841,7 +846,7 @@ Welche der unterstrichenen Buchstaben oder Buchstabengruppen in den folgenden Wo
 
 \FUBreak
 
-\subsection{Silben}\label{sec:silben}
+\subsection{\graphematikaufgabe Silben}\label{sec:silben}
 
 Trennen Sie die folgenden Wörter in Silben.
 Nutzen Sie dazu wie in Beispiel (0) demonstriert Punkte als Trenner.
@@ -884,7 +889,7 @@ Für das erste Wort gibt es eine Lösung als Beispiel.
   \end{longtable}
 \end{center}
 
-\subsection{Betonung}
+\subsection{\graphematikaufgabe Betonung}
 
 Setzen Sie in Aufgabe~\ref{sec:silben} einen Akutakzent (also das Zeichen \'\ \,) über den Vokal der betonten Silbe in den von Ihnen in Silben zerlegten Wörtern in Aufgabe~\ref{sec:silben}.
 Also \textbf{T\'in.te} usw.
